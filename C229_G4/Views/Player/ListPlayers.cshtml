@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Player>
+@{
+    ViewBag.Title = "Players";
+}
+<div class="container">
+    @if (TempData["message"] != null)
+    {
+        <div class="success-message">
+            <label>@TempData["message"]</label>
+        </div>
+    }
+    <h1>Players</h1>
+    <div class="form-search">
+        <form asp-controller="Player" asp-action="ListPlayers" method="get">
+            <p>Player Name: </p><input type="text" name="searchPlayerName" value="@ViewData["SearchFilter"]" />
+            <button type="submit" value="Search">Search</button> |
+            <a asp-controller="Player" asp-action="ListPlayers">Clear Filter</a>
+
+        </form>
+    </div>
+    <div class="tbl-players">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-controller="Player" asp-action="ListPlayers" asp-route-sortOrder="@ViewData["PlayerIdSort"]" asp-route-searchPlayerName="@ViewData["SearchFilter"]">
+                            Player Id
+                            @if ((string)ViewData["PlayerIdSort"] == "")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-controller="Player" asp-action="ListPlayers" asp-route-sortOrder="@ViewData["PlayerNameSort"]" asp-route-searchPlayerName="@ViewData["SearchFilter"]">
+                            Player Name
+                            @if ((string)ViewData["PlayerNameSort"] == "name")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-controller="Player" asp-action="ListPlayers" asp-route-sortOrder="@ViewData["PlayerAgeSort"]" asp-route-searchPlayerName="@ViewData["SearchFilter"]">
+                            Age
+                            @if ((string)ViewData["PlayerAgeSort"] == "age")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-controller="Player" asp-action="ListPlayers" asp-route-sortOrder="@ViewData["PlayerCountrySort"]" asp-route-searchPlayerName="@ViewData["SearchFilter"]">
+                            Country
+                            @if ((string)ViewData["PlayerCountrySort"] == "country")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-controller="Player" asp-action="ListPlayers" asp-route-sortOrder="@ViewData["PlayerClubIdSort"]" asp-route-searchPlayerName="@ViewData["SearchFilter"]">
+                            Club ID
+                            @if ((string)ViewData["PlayerClubIdSort"] == "clubid")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th>Actions</th>
+                    }
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Player player in Model)
+                {
+                    <tr>
+                        <td>@player.PlayerId</td>
+                        <td>@player.PlayerName</td>
+                        <td>@player.Age</td>
+                        <td>@player.Country</td>
+                        <td>@player.ClubId</td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <td>
+                                <a class="tbl-link tbl-link-update" asp-controller="Player" asp-action="EditPlayer" asp-route-playerId="@player.PlayerId">Update</a>
+                                <form asp-controller="Player" asp-action="DeletePlayer" method="post">
+                                    <input type="hidden" name="PlayerId" value="@player.PlayerId" />
+                                    <button class="tbl-btn-delete" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

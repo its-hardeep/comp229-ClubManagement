@@ -1,0 +1,83 @@
+﻿@model Club
+@{
+    ViewBag.Title = "Clubs Details";
+}
+
+<div class="container">
+    <h1>Club Details</h1>
+    <div class="tbl-clubdetails">
+        <table class="tbl-clubdetails-club">
+            <tr>
+                <th>Club ID</th>
+                <td>@Model.ClubId</td>
+            </tr>
+            <tr>
+                <th>Club Name</th>
+                <td>@Model.ClubName</td>
+            </tr>
+            <tr>
+                <th>Stadium Name</th>
+                <td>@Model.StadiumName</td>
+            </tr>
+            <tr>
+                <th>Year Founded</th>
+                <td>@Model.YearFounded</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>@Model.Country</td>
+            </tr>
+            <tr>
+                <th>Players</th>
+                <td>
+                    @*@foreach (Player p in Model.Players)
+                    {
+                        @p.PlayerName<br />
+                    }*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="tbl-link tbl-link-add" asp-controller="Player" asp-action="ManagePlayers" asp-route-clubId="@Model.ClubId">
+                            Add Player
+                        </a>
+                    }
+                </td>
+            </tr>
+        </table>
+        <table class="tbl-clubdetails-player">
+            <thead>
+                <tr>
+                    <th>Player Id</th>
+                    <th>Player Name</th>
+                    <th>Age</th>
+                    <th>Country</th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th>Actions</th>
+                    }
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Player player in Model.Players)
+                {
+                    <tr>
+                        <td>@player.PlayerId</td>
+                        <td>@player.PlayerName</td>
+                        <td>@player.Age</td>
+                        <td>@player.Country</td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <td>
+                                <a class="tbl-link tbl-link-update" asp-controller="Player" asp-action="EditPlayer" asp-route-playerId="@player.PlayerId">Update</a>
+                                <form asp-controller="Player" asp-action="DeletePlayer" method="post">
+                                    <input type="hidden" name="PlayerId" value="@player.PlayerId" />
+                                    <button class="tbl-btn-delete" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

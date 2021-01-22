@@ -1,0 +1,304 @@
+﻿.header {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    background-image: url("../images/header-image.jpg");
+    border-radius: 4px 4px 0px 0px;
+}
+
+    .header img {
+        float: left;
+        height: 150px;
+        width: 150px;
+        margin-left: 150px;
+    }
+
+        .header img:hover {
+            background-color: aliceblue;
+        }
+
+.header-right {
+    float: right;
+    margin-top: 20px;
+    margin-right: 150px;
+}
+
+    .header-right ul {
+        list-style: none;
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    .header-right li {
+        float: left;
+        height: 50px;
+        width: 150px;
+        border: 0;
+        margin-left: 10px;
+        border-radius: 4px;
+        background-color: lightskyblue;
+        text-align: center;
+        line-height: 50px;
+    }
+
+        .header-right li a {
+            display: block;
+            font-family: sans-serif;
+            font-size: 20px;
+            color: black;
+            text-decoration: none;
+        }
+
+            .header-right li a:hover {
+                background-color: #4286f4;
+                color: white;
+                border-radius: 4px;
+            }
+
+.banner {
+    position: relative;
+    font-family: sans-serif;
+    font-size: 20pt;
+    text-align: center;
+}
+
+    .banner img {
+        width: 100%;
+    }
+
+    .banner .text-block {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+.footer {
+    padding: -5px;
+    border-width: 1px;
+    border-color: black;
+    border-top: solid;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+    .footer h5 {
+        color: black;
+    }
+
+.container {
+    margin: 15px;
+    padding: 15px;
+    font-family: sans-serif;
+}
+
+    .container h1 {
+        text-align: center;
+        color: darkslateblue;
+    }
+
+.form-addclub, .form-addplayer, .form-reassign, .form-deregister, .form-login {
+    width: 45%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    margin-left: auto;
+    border-radius: 4px;
+}
+
+.form-addclub, .form-login {
+    margin-right: auto;
+}
+
+.form-addplayer {
+    float: left;
+}
+
+.form-deregister {
+    margin-top: 10px;
+}
+
+.container label {
+    font-size: 18pt;
+}
+
+.container input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    font-size: 16pt;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.container select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    font-size: 16pt;
+    border-radius: 4px;
+}
+
+.container button {
+    background-color: #4286f4;
+    font-size: 16pt;
+    color: white;
+    padding: 16px 20px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    width: auto;
+}
+
+
+.tbl-clubs table, .tbl-players table, .tbl-clubdetails-player {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18pt;
+    border-collapse: collapse;
+}
+
+.tbl-clubs table {
+    width: 55%;
+}
+
+.tbl-clubdetails-player {
+    margin-top: 20px;
+}
+
+.tbl-players table, .tbl-clubdetails-player {
+    width: 90% !important;
+}
+    .tbl-clubs table a, .tbl-players table a {
+        text-decoration: none;
+    }
+
+    .tbl-clubs table th a, .tbl-players table th a {
+        color: black;
+    }
+
+    .tbl-clubs table th a p, .tbl-players table th a p {
+        display: inline;
+        color: black;
+    }
+
+    .tbl-clubs table .tbl-link-detail a:hover {
+        font-weight: bold;
+    }
+
+.tbl-clubs table .tbl-link, .tbl-players table .tbl-link, .tbl-clubdetails .tbl-clubdetails-club .tbl-link, .tbl-clubdetails .tbl-clubdetails-player .tbl-link {
+    font-size: 16pt;
+    color: white;
+    padding: 16px 20px;
+    margin-top: 5px;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.tbl-clubdetails table .tbl-link-add {
+    background-color: limegreen;
+    float: left;
+}
+
+.tbl-clubs table .tbl-link-update, .tbl-players table .tbl-link-update, .tbl-clubdetails-player .tbl-link-update {
+    background-color: orange;
+    margin-left: 25px;
+    float: left;
+}
+
+.tbl-clubs table .tbl-btn-delete, .tbl-players table .tbl-btn-delete, .tbl-clubdetails-player .tbl-btn-delete {
+    background-color: red;
+    margin-left: 25px;
+    float: left;
+}
+
+.tbl-clubs th, .tbl-players th, .tbl-clubdetails-player th {
+    background-color: lightblue;
+}
+
+.tbl-clubs th, .tbl-clubs td, .tbl-players th, .tbl-players td, .tbl-clubdetails-player td {
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.tbl-clubdetails .tbl-clubdetails-club {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18pt;
+    border-collapse: collapse;
+}
+
+    .tbl-clubdetails .tbl-clubdetails-club th {
+        text-align: left;
+        background-color: lightblue;
+        width: 40%;
+    }
+
+    .tbl-clubdetails .tbl-clubdetails-club th, .tbl-clubdetails .tbl-clubdetails-club td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        vertical-align: top;
+    }
+
+.form-search {
+    width: 35%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+    .form-search p {
+        display: inline;
+    }
+
+    .form-search a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .form-search input {
+        width: 50% !important;
+        height: auto;
+        padding: 8px;
+        margin: 5px 5px 5px 5px;
+        font-size: 12pt;
+    }
+
+    .form-search button {
+        background-color: #4286f4;
+        font-size: 12pt;
+        color: white;
+        padding: 8px 10px;
+        margin-top: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline;
+        border: none;
+        border-radius: 4px;
+        width: auto;
+    }
+
+.validation-summary-errors {
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #f00;
+}
+
+.success-message label {
+    display: block;
+    font-weight: bold;
+    color: limegreen;
+    text-align: center;
+}

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Add Club";
+}
+
+<div class="container">
+    <div class="form-addclub">
+        <div asp-validation-summary="All"></div>
+        <form asp-controller="Club" asp-action="SaveClub" method="post">
+
+            <h1>Club Information</h1>
+
+            @Html.Partial("ClubForm")
+
+            <button type="submit">Save</button>
+            <button asp-controller="Home" asp-action="Index">Cancel</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <img src="~/images/logo_transparent.png" alt="Logo.png" />
+        <div class="header-right">
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Club" asp-action="ListClubs">Clubs</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("R_Admin"))
+                    {
+                        <li><a asp-controller="Club" asp-action="AddClub">Add Club</a></li>
+                        <li><a asp-controller="Player" asp-action="ListPlayers">Players</a></li>
+                        <li><a asp-controller="Player" asp-action="ManagePlayers">Manage Players</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Player" asp-action="ListPlayers">Players</a></li>
+                        <li><a asp-controller="Player" asp-action="ManagePlayers">Manage Players</a></li>
+                    }
+                    <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                }
+            </ul>
+        </div>
+        
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <h4>&copy; C229_G4 FC SportPro 2019</h4>
+        <h5>CaihuiFu(301040187) SubodhKantRai(301018368)  HardeepSingh(301034240)</h5>
+        <h6>Best viewed at 1920*1080</h6>
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@model PlayersClubsViewModel
+@{
+    ViewBag.Title = "Manage Players";
+}
+
+<div class="container">
+    <div class="form-addplayer">
+        <div asp-validation-summary="All"></div>
+        <div class="success-message">
+            <label>@ViewBag.Success</label>
+        </div>
+        <form asp-controller="Player" asp-action="AddPlayer" method="post">
+
+            <h1>Player Information</h1>
+            <input type="hidden" asp-for="Player.PlayerId" />
+            <div>
+                <label asp-for="Player.PlayerName">Player Name</label>
+                <input asp-for="Player.PlayerName" />
+            </div>
+
+            <div>
+                <label asp-for="Player.Age">Age</label>
+                <input asp-for="Player.Age" />
+            </div>
+
+            <div>
+                <label asp-for="Player.Country">Country</label>
+                <input asp-for="Player.Country" />
+            </div>
+
+            <div>
+                @if (@Model?.Player.ClubId == 0)
+                {
+                    <label asp-for="Player.ClubId">Club Name</label>
+                    <select asp-for="Player.ClubId">
+                        @foreach (Club c in @Model?.Clubs)
+                        {
+                            <option value="@c.ClubId">[@c.ClubId] @c.ClubName</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <label asp-for="Player.ClubId">Club ID</label>
+                    <input asp-for="Player.ClubId" readonly="readonly" />
+                }
+
+            </div>
+            <button type="submit">Save Player</button>
+        </form>
+    </div>
+
+    <div class="form-reassign">
+        <form asp-controller="Player" asp-action="ReassignPlayer" method="post">
+            <h1>Re-Assign Player</h1>
+            <label>Select Player</label><br />
+            <select name="playerId">
+                @foreach (Player p in @Model?.Players)
+                {
+                    <option value="@p.PlayerId">@p.PlayerName</option>
+                }
+            </select>
+            <label>Select Club</label><br />
+            <select name="clubId">
+                @foreach (Club c in @Model?.Clubs)
+                {
+                    <option value="@c.ClubId">[@c.ClubId] @c.ClubName</option>
+                }
+            </select>
+            <button type="submit">Re-Assign Player</button>
+        </form>
+    </div>
+
+    <div class="form-deregister">
+        <form asp-controller="Player" asp-action="DeregisterPlayer">
+            <h1>De-Register Player</h1>
+            <label>Select Player</label><br />
+            <select name="playerId">
+                @foreach (Player p in @Model?.Players)
+                {
+                    <option value="@p.PlayerId">@p.PlayerName</option>
+                }
+            </select>
+            <button type="submit">De-Register Player</button>
+        </form>
+    </div>
+</div>

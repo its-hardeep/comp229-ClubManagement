@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Club>
+@{
+    ViewBag.Title = "Clubs";
+}
+<div class="container">
+    @if (TempData["message"] != null)
+    {
+        <div class="success-message">
+            <label>@TempData["message"]</label>
+        </div>
+    }
+    <h1>Clubs</h1>
+    <div class="form-search">
+        <form asp-controller="Club" asp-action="ListClubs" method="get">
+            <p>Club Name: </p><input type="text" name="searchClubName" value="@ViewData["SearchFilter"]" />
+            <button type="submit" value="Search">Search</button> |
+            <a asp-controller="Club" asp-action="ListClubs">Clear Filter</a>
+
+        </form>
+    </div>
+    <div class="tbl-clubs">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-controller="Club" asp-action="ListClubs" asp-route-sortOrder="@ViewData["ClubIdSort"]" asp-route-searchClubName="@ViewData["SearchFilter"]">
+                            Club Id
+                            @if ((string)ViewData["ClubIdSort"] == "")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-controller="Club" asp-action="ListClubs" asp-route-sortOrder="@ViewData["ClubNameSort"]" asp-route-searchClubName="@ViewData["SearchFilter"]">
+                            Club Name
+                            @if ((string)ViewData["ClubNameSort"] == "name")
+                            {
+                                <p>&darr;</p>
+                            }
+                            else
+                            {
+                                <p>&uarr;</p>
+                            }
+                        </a>
+                    </th>
+                    @if (User.IsInRole("R_Admin"))
+                    {
+                        <th>Actions</th>
+                    }
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Club aClub in Model)
+                {
+                    <tr>
+                        <td>@aClub.ClubId</td>
+                        <td class="tbl-link-detail">
+                            <a asp-controller="Club" asp-action="ClubDetails" asp-route-clubId="@aClub.ClubId">@aClub.ClubName</a>
+                        </td>
+                        @if (User.IsInRole("R_Admin"))
+                        {
+                            <td>
+                                <a class="tbl-link tbl-link-update" asp-controller="Club" asp-action="EditClub" asp-route-clubId="@aClub.ClubId">Update</a>
+                                <form asp-controller="Club" asp-action="DeleteClub" method="post">
+                                    <input type="hidden" name="ClubId" value="@aClub.ClubId" />
+                                    <button class="tbl-btn-delete" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

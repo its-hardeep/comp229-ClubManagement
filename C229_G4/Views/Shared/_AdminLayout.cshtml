@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
+    <script src="~/lib/jquery/core.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+</head>
+<body>
+    <div class="header">
+        <img src="~/images/logo_transparent.png" alt="Logo.png" />
+        <div class="header-right">
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Club" asp-action="ListClubs">Clubs</a></li>
+            </ul>
+        </div>
+
+    </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
